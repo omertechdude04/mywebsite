@@ -53,8 +53,14 @@ function normalizeContent(raw) {
   const skillsArr = Array.isArray(c.skills) ? c.skills : [];
   const pricingArr = Array.isArray(c.pricing) ? c.pricing : [];
 
+  // Admin schema (old): hero.name/tagline/logoUrl/headline/about/photoUrl
+  // New schema: branding.name/tagline/logoUrl + hero.title/subtitle/heroImageUrl
+
   const name = branding.name || hero.name || c.name || "OMER TECH DUDE";
-  const tagline = branding.tagline || hero.tagline || c.tagline || "Web Development";
+
+  const tagline =
+    branding.tagline || hero.tagline || c.tagline || "Web Development";
+
   const logoUrl = branding.logoUrl || hero.logoUrl || c.logoUrl || "";
 
   const title =
@@ -66,12 +72,16 @@ function normalizeContent(raw) {
     c.heroSubtitle ||
     "I design and build modern, responsive, and user-focused web experiences.";
 
-  // Prefer hero image; fall back to photoUrl; NEVER fall back to logo.
   const heroImageUrl =
     hero.heroImageUrl || hero.photoUrl || hero.imageUrl || c.heroImageUrl || "";
 
-  return {
-    branding: { name, tagline, logoUrl, logoPath: branding.logoPath || "" },
+  const normalized = {
+    branding: {
+      name,
+      tagline,
+      logoUrl,
+      logoPath: branding.logoPath || "",
+    },
     hero: {
       title,
       subtitle,
@@ -104,10 +114,13 @@ function normalizeContent(raw) {
       email: contact.email || c.email || "omertechdude@gmail.com",
       instagram: contact.instagram || c.instagram || "",
       linkedin: contact.linkedin || "",
+      // IMPORTANT: supports BOTH keys
       formspree: contact.formspree || contact.formspreeUrl || c.formspree || "",
       text: contact.text || "",
     },
   };
+
+  return normalized;
 }
 
 export default function Home() {
@@ -133,18 +146,12 @@ export default function Home() {
   }, []);
 
   const brandLogo = useMemo(
-    () =>
-      resolveImage(
-        content?.branding?.logoUrl || content?.branding?.logoPath || ""
-      ),
+    () => resolveImage(content?.branding?.logoUrl || content?.branding?.logoPath),
     [content]
   );
 
   const heroImg = useMemo(
-    () =>
-      resolveImage(
-        content?.hero?.heroImageUrl || content?.hero?.heroImagePath || ""
-      ),
+    () => resolveImage(content?.hero?.heroImageUrl || content?.hero?.heroImagePath),
     [content]
   );
 
@@ -160,13 +167,11 @@ export default function Home() {
               {brandLogo ? (
                 <img className="loaderLogo" src={brandLogo} alt="Loading logo" />
               ) : (
-                <div className="loaderLogoFallback" />
+                <div className="brandMark" />
               )}
             </div>
             <div className="loaderText">
-              <div className="loaderTitle">
-                {content?.branding?.name || "Loading…"}
-              </div>
+              <div className="loaderTitle">{content?.branding?.name || "Loading…"}</div>
               <div className="loaderSub">Loading your portfolio…</div>
             </div>
             <div className="loaderBar">
@@ -178,43 +183,37 @@ export default function Home() {
 
       <Header content={content} />
 
-      <main className="page">
+      <div className="page">
         <div className="container">
           {/* HERO */}
           <section className="hero" id="top">
-            <div className="heroWrap">
-              <div className="heroCopy">
-                <div className="kicker">{content.branding.tagline}</div>
-                <h1 className="h1">{content.hero.title}</h1>
-                <p className="lead">{content.hero.subtitle}</p>
+            <div className="heroGrid">
+              <div className="card">
+                <div className="cardPad">
+                  <h1 className="h1">{content.hero.title}</h1>
+                  <p className="lead">{content.hero.subtitle}</p>
 
-                <div className="ctaRow">
-                  <a className="btn btnPrimary" href="#projects">
-                    View projects
-                  </a>
-                  <a className="btn" href="#contact">
-                    Contact
-                  </a>
-                </div>
+                  <div className="ctaRow">
+                    <a className="btn btnPrimary" href="#projects">
+                      View projects
+                    </a>
+                    <a className="btn" href="#contact">
+                      Contact
+                    </a>
+                  </div>
 
-              <div className="heroVisual">
-                <div className="heroPhotoFrame">
-                  {heroImg ? (
-                    <img src={heroImg} alt="Hero" />
-                  ) : (
-                    <div className="heroPhotoPlaceholder">
-                      <strong>Add a Hero Image in Admin</strong>
-                      <span>Admin → Hero → Hero Image (upload)</span>
-                    </div>
-                  )}
+                  <hr className="sep" />
                 </div>
+              </div>
 
-                <div className="heroMetaBar">
-                  <span className="statusDot" />
-                  <span className="statusText">Available for work</span>
-                  <span className="metaSep" />
-                  <span className="metaText">Florida • Remote</span>
-                </div>
+              <div className="heroPhotoFrame">
+                {heroImg ? (
+                  <img src={heroImg} alt="Hero" />
+                ) : (
+                  <div className="heroPhotoPlaceholder">
+
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -224,9 +223,9 @@ export default function Home() {
         <section id="skills" className="section">
           <div className="container">
             <div className="sectionTitle">
-              <h2>Skills</h2>
+              <h2>My Skills</h2>
               <p>
-                {content.skills?.length ? "What I use to ship web apps" : ""}
+                {content.skills?.length ? "What I use to ship high-quality web apps" : ""}
               </p>
             </div>
 
@@ -244,8 +243,7 @@ export default function Home() {
         <section id="projects" className="section">
           <div className="container">
             <div className="sectionTitle">
-              <h2>Projects</h2>
-              <p>Selected work — real functionality</p>
+              <h2>My Projects</h2>
             </div>
 
             <div className="grid3">
@@ -263,9 +261,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {p.description ? (
-                      <div className="itemMeta">{p.description}</div>
-                    ) : null}
+                    {p.description ? <div className="itemMeta">{p.description}</div> : null}
 
                     <div className="linkRow">
                       {p.liveUrl ? (
@@ -290,8 +286,7 @@ export default function Home() {
         <section id="pricing" className="section">
           <div className="container">
             <div className="sectionTitle">
-              <h2>Pricing</h2>
-              <p>Clear packages — simple and fast</p>
+              <h2>My Pricing</h2>
             </div>
 
             <div className="grid3">
@@ -313,19 +308,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT */}
-        <section id="contact" className="section">
-          <div className="container">
-            <Contact content={content} />
-          </div>
-        </section>
+        {/* CONTACT (Formspree component) */}
+        <div className="container">
+          <Contact content={content} />
+        </div>
 
-        <footer className="footer">
+        <div className="footer">
           <div className="container">
             © {new Date().getFullYear()} {content.branding.name}. All rights reserved.
           </div>
-        </footer>
-      </main>
+        </div>
+      </div>
     </div>
   );
 }
