@@ -197,22 +197,6 @@ export default function Home() {
                   </a>
                 </div>
 
-                <div className="miniPoints">
-                  <div className="miniPoint">
-                    <strong>Fast builds</strong>
-                    <span>Clean UI, optimized performance</span>
-                  </div>
-                  <div className="miniPoint">
-                    <strong>Mobile-first</strong>
-                    <span>Looks great on every screen</span>
-                  </div>
-                  <div className="miniPoint">
-                    <strong>CMS-ready</strong>
-                    <span>Edit content from your Admin</span>
-                  </div>
-                </div>
-              </div>
-
               <div className="heroVisual">
                 <div className="heroPhotoFrame">
                   {heroImg ? (
