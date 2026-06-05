@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { PageFrame } from "@/components/comic/PageFrame";
 import { Halftone, DiagonalStripes } from "@/components/comic/Halftone";
@@ -22,7 +23,7 @@ type Service = {
   tagline: string;
   bullets: string[];
   accent: "red" | "orange" | "yellow" | "cyan";
-  icon: JSX.Element;
+  icon: ReactNode;
 };
 
 const services: Service[] = [
