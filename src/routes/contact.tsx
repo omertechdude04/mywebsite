@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xlgvazve";
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
 
 type Status = "idle" | "loading" | "success" | "error";
 
