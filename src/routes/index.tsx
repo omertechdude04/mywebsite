@@ -4,6 +4,7 @@ import { PageFrame } from "@/components/comic/PageFrame";
 import { Halftone, DiagonalStripes } from "@/components/comic/Halftone";
 import { Marquee } from "@/components/comic/Marquee";
 import { projects, previewUrl } from "@/lib/projects";
+import omeriko from "/omeriko.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <PageFrame chapter="Chapter 01 — The Origin" title="// home.tsx">
+    <PageFrame chapter="Chapter 01 — Home" title="// home.tsx">
       {/* HERO */}
       <section className="relative overflow-hidden border-b-[2.5px] border-ink">
         <Halftone className="absolute inset-0" opacity={0.18} size={9} />
@@ -34,10 +35,6 @@ function HomePage() {
           <div>
             <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">
               <span className="kbd-chip">~/portfolio</span>
-              <span>·</span>
-              <span>Vol. 01</span>
-              <span>·</span>
-              <span>Issue 001</span>
               <span>·</span>
               <span className="text-red">Now Available</span>
             </div>
@@ -59,7 +56,7 @@ function HomePage() {
             </motion.h1>
 
             <p className="mt-6 max-w-xl text-lg text-ink/80 md:text-xl">
-              I’m <span className="font-semibold">Omer Taib</span> — a frontend engineer who treats every site like a panel in a graphic novel.
+              I’m <span className="font-semibold">Omer Taib</span> — a web developer who treats every site like a panel in a graphic novel.
               Bold typography, tight interactions, real performance.
             </p>
 
@@ -68,7 +65,7 @@ function HomePage() {
                 to="/projects"
                 className="group inline-flex items-center gap-2 border-[2.5px] border-ink bg-ink px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--ink)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
               >
-                Read Issue 02 — Projects
+                My Projects
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link
@@ -113,24 +110,11 @@ function HomePage() {
                 }}
               />
               {/* Silhouette stand-in for portrait */}
-              <svg viewBox="0 0 400 500" className="absolute inset-0 h-full w-full">
-                <defs>
-                  <clipPath id="panelMask">
-                    <rect x="0" y="0" width="400" height="500" />
-                  </clipPath>
-                </defs>
-                <g clipPath="url(#panelMask)">
-                  {/* shoulders / head */}
-                  <ellipse cx="200" cy="220" rx="110" ry="120" fill="var(--ink)" />
-                  <path d="M60 500 C 60 360 140 320 200 320 C 260 320 340 360 340 500 Z" fill="var(--ink)" />
-                  {/* visor */}
-                  <rect x="120" y="195" width="160" height="42" rx="6" fill="var(--cyan)" />
-                  <rect x="120" y="195" width="160" height="42" rx="6" fill="none" stroke="var(--ink)" strokeWidth="3" />
-                  {/* chest tag */}
-                  <rect x="160" y="370" width="80" height="22" fill="var(--cream)" stroke="var(--ink)" strokeWidth="3" />
-                  <text x="200" y="386" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="11" fill="var(--ink)">OMER.T</text>
-                </g>
-              </svg>
+            <img
+              src={omeriko}
+              alt="Omer Taib"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
 
               {/* Speech bubble */}
               <div className="absolute -left-3 bottom-6 max-w-[70%] -rotate-2 speech-bubble shadow-[4px_4px_0_0_var(--ink)]">
@@ -236,55 +220,97 @@ function HomePage() {
 
       {/* PROCESS / PANELS */}
       <section className="relative border-b-[2.5px] border-ink bg-cream">
-        <Halftone className="absolute inset-0" opacity={0.12} size={12} />
-        <div className="relative mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-24">
-          <div className="grid items-end gap-6 md:grid-cols-[1.2fr_1fr]">
-            <h2 className="font-display text-6xl leading-[0.9] md:text-8xl">
-              MY WORKFLOW <br /> IN <span className="text-red">FOUR PANELS.</span>
-            </h2>
-            <p className="text-lg text-ink/80">
-              No mystery. No fluff. Just a tight loop of listening, sketching, building, and polishing —
-              until the site feels inevitable.
-            </p>
-          </div>
+      <Halftone className="absolute inset-0" opacity={0.12} size={12} />
 
-          <div className="mt-10 grid gap-5 md:grid-cols-4">
-            {[
-              { n: "01", t: "Listen", d: "We talk about the people, the story, the stakes." , c: "yellow"},
-              { n: "02", t: "Sketch", d: "Layouts, type, motion — drafted as comic panels." , c: "orange"},
-              { n: "03", t: "Build", d: "Hand-coded React, accessible by default, fast on day one." , c: "cyan"},
-              { n: "04", t: "Polish", d: "Micro-interactions, SEO, and the details nobody else ships." , c: "red"},
-            ].map((s) => (
-              <div key={s.n} className="panel relative overflow-hidden">
-                <div className={`flex items-baseline justify-between border-b-[2.5px] border-ink p-4`}
-                  style={{ background: `var(--${s.c})` }}>
-                  <div className="font-mono text-[10px] uppercase tracking-widest">PANEL {s.n}</div>
-                  <div className="font-display text-3xl leading-none">{s.t}</div>
-                </div>
-                <div className="p-5 text-ink/80">{s.d}</div>
-              </div>
-            ))}
-          </div>
+      <div className="relative mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-24">
+        <div className="grid items-end gap-6 md:grid-cols-[1.2fr_1fr]">
+          <h2 className="font-display text-6xl leading-[0.9] md:text-8xl">
+            FROM IDEA <br />
+            <span className="text-red">TO LAUNCH.</span>
+          </h2>
+
+          <p className="text-lg text-ink/80">
+            Building a website shouldn't be complicated. I keep the process simple,
+            collaborative, and focused on what matters most: creating a website
+            that helps you achieve your goals.
+          </p>
         </div>
-      </section>
 
+        <div className="mt-10 grid gap-5 md:grid-cols-4">
+          {[
+            {
+              n: "01",
+              t: "Discover",
+              d: "We discuss your business, audience, goals, and what success looks like for your website.",
+              c: "yellow",
+            },
+            {
+              n: "02",
+              t: "Design",
+              d: "I create a structure and visual direction that reflects your brand and delivers a great user experience.",
+              c: "orange",
+            },
+            {
+              n: "03",
+              t: "Develop",
+              d: "Your website is built using modern technologies with a focus on speed, responsiveness, and reliability.",
+              c: "cyan",
+            },
+            {
+              n: "04",
+              t: "Launch",
+              d: "After testing and refinement, your website goes live and is ready to represent your business online.",
+              c: "red",
+            },
+          ].map((s) => (
+            <div key={s.n} className="panel relative overflow-hidden">
+              <div
+                className="flex items-baseline justify-between border-b-[2.5px] border-ink p-4"
+                style={{ background: `var(--${s.c})` }}
+              >
+                <div className="font-mono text-[10px] uppercase tracking-widest">
+                  STEP {s.n}
+                </div>
+
+                <div className="font-display text-3xl leading-none">
+                  {s.t}
+                </div>
+              </div>
+
+              <div className="p-5">
+                <p className="text-ink/80">{s.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
       {/* CODE STRIP */}
       <section className="relative overflow-hidden border-b-[2.5px] border-ink bg-ink text-cream">
         <div className="absolute inset-0 blueprint-grid opacity-20" />
+
         <div className="relative mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-16 md:grid-cols-[1fr_1.2fr] md:px-8 md:py-24">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">// behind the curtain</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+              // from idea to launch
+            </div>
+
             <h2 className="mt-2 font-display text-6xl leading-[0.9] md:text-8xl">
-              CODE THAT <br />READS LIKE <span className="text-yellow">A SCRIPT.</span>
+              YOUR VISION, <br />
+              <span className="text-yellow">BROUGHT ONLINE.</span>
             </h2>
+
             <p className="mt-5 max-w-md text-cream/80">
-              Components named for humans. Files that tell a story. Tests where they matter. Performance budgets that hold.
+              Every website starts with an idea. My job is turning that idea into a
+              fast, modern, and professional experience that represents your brand and
+              helps you reach your goals online.
             </p>
+
             <Link
               to="/about"
-              className="mt-6 inline-flex items-center gap-2 border-2 border-cream px-5 py-2.5 font-mono text-xs uppercase tracking-widest hover:bg-cream hover:text-ink"
+              className="mt-6 inline-flex items-center gap-2 border-2 border-cream px-5 py-2.5 font-mono text-xs uppercase tracking-widest transition hover:bg-cream hover:text-ink"
             >
-              Read the origin story →
+              Learn more about me →
             </Link>
           </div>
 
@@ -296,51 +322,58 @@ function HomePage() {
                   <span className="h-2.5 w-2.5 rounded-full bg-yellow" />
                   <span className="h-2.5 w-2.5 rounded-full bg-cyan" />
                 </div>
-                <span className="opacity-60">~/omer/portfolio · Hero.tsx</span>
+                <span className="opacity-60">~/process/project.ts</span>
               </div>
+
               <pre className="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-cream/90">
-{`export function Hero() {
-  const punch = useInkAnimation();
-  return (
-    <Panel border="ink" shadow="hard">
-      <Title size="splash" weight="bebas">
-        "Let's build something
-         unforgettable."
-      </Title>
-      <Caption tone="cyan">// panel 1 of ∞</Caption>
-      <CTA href="/contact" variant="comic">
-        Start a project →
-      </CTA>
-    </Panel>
-  );
-}`}
+      {`const project = {
+        idea: "Your vision",
+        design: "Custom experience",
+        development: "Clean code",
+        launch: "Ready for the world"
+      };
+
+      function buildWebsite(project) {
+        return {
+          responsive: true,
+          fast: true,
+          modern: true,
+          tailoredToClient: true,
+        };
+      }
+
+      export default buildWebsite(project);`}
               </pre>
             </div>
-            <div className="absolute -right-3 -top-3 grid h-16 w-16 -rotate-6 place-items-center border-[2.5px] border-cream bg-red font-mono text-[10px] uppercase tracking-widest text-cream shadow-[3px_3px_0_0_var(--cream)]">
-              LIVE
+
+            <div className="absolute -right-3 -top-3 grid h-16 w-16 -rotate-6 place-items-center border-[2.5px] border-cream bg-cyan font-mono text-[10px] uppercase tracking-widest text-ink shadow-[3px_3px_0_0_var(--cream)]">
+              OPEN
             </div>
           </div>
         </div>
       </section>
-
       {/* CTA */}
-      <section className="relative border-b-[2.5px] border-ink bg-red text-cream">
-        <DiagonalStripes className="absolute inset-0" color="var(--cream)" opacity={0.12} />
-        <div className="relative mx-auto grid max-w-[1400px] items-center gap-6 px-5 py-16 md:grid-cols-[1.6fr_1fr] md:px-8 md:py-20">
-          <h2 className="font-display text-6xl leading-[0.9] md:text-8xl">
-            GOT A STORY <br /> WORTH SHIPPING?
-          </h2>
+      <section className="relative border-b-[2.5px] border-ink bg-yellow">
+        <DiagonalStripes className="absolute inset-0" opacity={0.18} />
+
+        <div className="relative mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-6 px-5 py-14 md:px-8">
           <div>
-            <p className="text-cream/90">
-              Booking a small number of projects each quarter. Send a short brief and let’s plot the next issue.
+            <h3 className="font-display text-5xl leading-none md:text-7xl">
+              NEED A WEBSITE <br /> THAT STANDS OUT?
+            </h3>
+
+            <p className="mt-4 max-w-xl text-lg text-ink/85">
+              Whether you're a business, creator, or startup, I build custom websites
+              designed around your goals, brand, and audience.
             </p>
-            <Link
-              to="/contact"
-              className="mt-5 inline-flex items-center gap-2 border-[2.5px] border-cream bg-ink px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--cream)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
-            >
-              Start the conversation →
-            </Link>
           </div>
+
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 border-[2.5px] border-ink bg-ink px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--ink)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
+          >
+            Start your project →
+          </Link>
         </div>
       </section>
     </PageFrame>

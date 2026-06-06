@@ -7,9 +7,9 @@ import { Halftone, DiagonalStripes } from "@/components/comic/Halftone";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — OmerTechDude · Issue #004" },
+      { title: "Services — Omer Tech Dude"},
       { name: "description", content: "Special abilities of a frontend engineer: business sites, portfolios, landing pages, redesigns, responsive optimisation, SEO." },
-      { property: "og:title", content: "Services — OmerTechDude" },
+      { property: "og:title", content: "Services — Omer Tech Dude" },
       { property: "og:description", content: "Pick a power. Ship a website that punches." },
     ],
   }),
@@ -126,21 +126,35 @@ const accentBg: Record<string, string> = {
 
 export default function ServicesPage() {
   return (
-    <PageFrame chapter="Chapter 04 — Special Abilities" title="// services.tsx">
+    <PageFrame chapter="Chapter 04 — My Skills" title="// skills.tsx">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b-[2.5px] border-ink bg-cyan">
         <Halftone className="absolute inset-0" opacity={0.25} size={9} />
-        <DiagonalStripes className="absolute right-0 top-0 h-32 w-40" opacity={0.3} />
+        <DiagonalStripes
+          className="absolute right-0 top-0 h-32 w-40"
+          opacity={0.3}
+        />
+
         <div className="relative mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-24">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">Issue 004</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">
+            Chapter 04
+          </div>
+
           <h1 className="mt-2 font-display text-[clamp(3.4rem,10vw,9.5rem)] leading-[0.85]">
-            SPECIAL <br /><span className="text-cream">ABILITIES.</span>
+            MY <br />
+            <span className="text-cream">SKILLS.</span>
           </h1>
+
           <p className="mt-5 max-w-2xl text-lg text-ink/85">
-            Six powers, one frontend engineer. Pick one — or stack a few — to ship the website your project deserves.
+            From React and TypeScript to Shopify and responsive web design,
+            these are the technologies, tools, and skills I use to build modern
+            websites, web applications, and digital experiences that help
+            businesses stand out online.
           </p>
         </div>
       </section>
 
+      {/* Skills Grid */}
       <section className="relative border-b-[2.5px] border-ink bg-cream">
         <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-24">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -150,18 +164,33 @@ export default function ServicesPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: (i % 3) * 0.05 }}
+                transition={{
+                  duration: 0.45,
+                  delay: (i % 3) * 0.05,
+                }}
                 className="group panel relative overflow-hidden p-0"
               >
-                <div className={`flex items-center justify-between border-b-[2.5px] border-ink ${accentBg[s.accent]} p-5`}>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/80">{s.power}</div>
+                <div
+                  className={`flex items-center justify-between border-b-[2.5px] border-ink ${accentBg[s.accent]} p-5`}
+                >
+                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/80">
+                    {s.power}
+                  </div>
+
                   <div className="grid h-12 w-12 place-items-center border-2 border-ink bg-cream shadow-[2px_2px_0_0_var(--ink)]">
                     {s.icon}
                   </div>
                 </div>
+
                 <div className="p-5">
-                  <h3 className="font-display text-4xl leading-none">{s.title}</h3>
-                  <p className="mt-2 font-editorial text-base italic text-ink/80">{s.tagline}</p>
+                  <h3 className="font-display text-4xl leading-none">
+                    {s.title}
+                  </h3>
+
+                  <p className="mt-2 font-editorial text-base italic text-ink/80">
+                    {s.tagline}
+                  </p>
+
                   <ul className="mt-4 space-y-1.5 font-mono text-[12px] uppercase tracking-wider text-ink/80">
                     {s.bullets.map((b) => (
                       <li key={b} className="flex gap-2">
@@ -177,35 +206,61 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing-ish honesty band */}
+      {/* Core Strengths */}
       <section className="relative border-b-[2.5px] border-ink bg-ink text-cream">
         <div className="absolute inset-0 blueprint-grid opacity-15" />
+
         <div className="relative mx-auto grid max-w-[1400px] gap-10 px-5 py-16 md:grid-cols-[1.3fr_1fr] md:px-8 md:py-20">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">// how it works</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+              // core strengths
+            </div>
+
             <h2 className="mt-2 font-display text-6xl leading-[0.9] md:text-7xl">
-              ONE PROJECT <br /> AT A TIME.
+              MODERN TOOLS. <br />
+              REAL RESULTS.
             </h2>
+
             <p className="mt-5 max-w-md text-cream/80">
-              I work with a small number of clients each quarter so every project gets full attention.
-              Most engagements run 2–6 weeks depending on scope.
+              Technology is only valuable when it solves problems. I focus on
+              tools that create fast, reliable, and user-friendly websites that
+              help businesses build credibility and grow online.
             </p>
+
             <Link
-              to="/contact"
+              to="/projects"
               className="mt-6 inline-flex items-center gap-2 border-[2.5px] border-cream bg-red px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--cream)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
             >
-              Request a quote →
+              View my projects →
             </Link>
           </div>
+
           <div className="space-y-4">
             {[
-              { k: "Discovery", v: "Short brief, free call, scope." },
-              { k: "Design + Build", v: "Iterative, in your browser." },
-              { k: "Launch", v: "QA, SEO, analytics, handoff." },
+              {
+                k: "Frontend",
+                v: "React, TypeScript, JavaScript",
+              },
+              {
+                k: "Styling",
+                v: "Tailwind CSS & Responsive Design",
+              },
+              {
+                k: "E-Commerce",
+                v: "Shopify Development",
+              },
             ].map((row) => (
-              <div key={row.k} className="border-[2.5px] border-cream bg-gunmetal p-5 shadow-[5px_5px_0_0_var(--cream)]">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">{row.k}</div>
-                <div className="mt-1 font-display text-3xl">{row.v}</div>
+              <div
+                key={row.k}
+                className="border-[2.5px] border-cream bg-gunmetal p-5 shadow-[5px_5px_0_0_var(--cream)]"
+              >
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                  {row.k}
+                </div>
+
+                <div className="mt-1 font-display text-3xl">
+                  {row.v}
+                </div>
               </div>
             ))}
           </div>

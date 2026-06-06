@@ -18,7 +18,7 @@ export const Route = createFileRoute("/projects")({
 
 function ProjectsPage() {
   return (
-    <PageFrame chapter="Chapter 02 — The Casework" title="// projects.tsx">
+    <PageFrame chapter="Chapter 02 — My Projects" title="// projects.tsx">
       {/* Title splash */}
       <section className="relative overflow-hidden border-b-[2.5px] border-ink bg-yellow">
         <Halftone className="absolute inset-0" opacity={0.25} size={8} />
@@ -26,7 +26,7 @@ function ProjectsPage() {
         <div className="relative mx-auto max-w-[1400px] px-5 py-14 md:px-8 md:py-20">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">Vol. 01 · Issue 002</div>
           <h1 className="mt-3 font-display text-[clamp(3.5rem,11vw,10rem)] leading-[0.85]">
-            THE <span className="text-red">CASE</span> FILES
+            <span className="text-red">MY</span> PROJECTS
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink/80">
             Every project below is live. Real clients. Real code. Click any panel to open the live site.
@@ -46,17 +46,26 @@ function ProjectsPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative border-y-[2.5px] border-ink bg-ink text-cream">
-        <Halftone className="absolute inset-0" color="var(--cream)" opacity={0.06} size={8} />
-        <div className="relative mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-6 px-5 py-14 md:flex-row md:items-end md:px-8">
-          <h3 className="font-display text-5xl leading-none md:text-7xl">
-            YOUR PROJECT <br /> IN THE NEXT ISSUE?
-          </h3>
+      <section className="relative border-b-[2.5px] border-ink bg-yellow">
+        <DiagonalStripes className="absolute inset-0" opacity={0.18} />
+
+        <div className="relative mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-6 px-5 py-14 md:px-8">
+          <div>
+            <h3 className="font-display text-5xl leading-none md:text-7xl">
+              NEED A WEBSITE <br /> THAT STANDS OUT?
+            </h3>
+
+            <p className="mt-4 max-w-xl text-lg text-ink/85">
+              Whether you're a business, creator, or startup, I build custom websites
+              designed around your goals, brand, and audience.
+            </p>
+          </div>
+
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 border-[2.5px] border-cream bg-red px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--cream)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 border-[2.5px] border-ink bg-ink px-6 py-3 font-mono text-xs uppercase tracking-widest text-cream shadow-[5px_5px_0_0_var(--ink)] transition hover:-translate-x-0.5 hover:-translate-y-0.5"
           >
-            Pitch your story →
+            Start your project →
           </Link>
         </div>
       </section>
