@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     nitro({
-      preset: "node",
+      preset: "vercel",
     }),
   ],
   resolve: {
